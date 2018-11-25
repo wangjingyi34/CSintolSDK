@@ -33,17 +33,17 @@
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -72,15 +72,21 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>.\Debug\</OutDir>
+    <OutDir>D:\SintolRTOS\SintolRTOS\lib\Debug\</OutDir>
     <IntDir>sintolsdk.dir\Debug\</IntDir>
     <TargetName>sintolsdk</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <OutDir>D:\SintolRTOS\SintolRTOS\lib\Debug\</OutDir>
+    <IntDir>sintolsdk.dir\Debug\</IntDir>
+    <TargetName>sintolsdk</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
+    <OutDir>Release\</OutDir>
+    <IntDir>sintolsdk.dir\Release\</IntDir>
+    <TargetName>sintolsdk</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -93,7 +99,7 @@
       <PreprocessorDefinitions>WIN32;_WINDOWS;RTI_DISABLE_WARNINGS;SintolRTI_DLL;CMAKE_INTDIR="Debug";%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>
       </SDLCheck>
-      <AdditionalIncludeDirectories>D:\SintolRTOS\CSintolSDK\sdk\include;D:\SintolRTOS\CSintolSDK\sdk\include\SintolRTI;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\SintolRTOS\SintolRTOS\include\rti1516;D:\SintolRTOS\SintolRTOS\src\SintolRTI;D:\SintolRTOS\SintolRTOS\sample\sdk\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
       <AssemblerListingLocation>Debug/</AssemblerListingLocation>
@@ -114,26 +120,45 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;RTI_DISABLE_WARNINGS;SintolRTI_DLL;CMAKE_INTDIR="Debug";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>
+      </SDLCheck>
+      <AdditionalIncludeDirectories>D:\SintolRTOS\SintolRTOS\include\rti1516;D:\SintolRTOS\SintolRTOS\src\SintolRTI;D:\SintolRTOS\SintolRTOS\sample\sdk\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <AssemblerListingLocation>Debug/</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:X64 /DEF /DEF</AdditionalOptions>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <Optimization>MaxSpeed</Optimization>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <SDLCheck>true</SDLCheck>
+      <FunctionLevelLinking>
+      </FunctionLevelLinking>
+      <IntrinsicFunctions>false</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;SintolRTI_DLL;SintolRTI_DLL_EXPORTS;RTI_DISABLE_WARNINGS;_CRT_SECURE_NO_WARNINGS;WINVER=0x0502;_WIN32_WINNT=0x0502;XML_STATIC;HAVE_MEMMOVE;CMAKE_INTDIR="Release";SintolRTI_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>
+      </SDLCheck>
+      <AdditionalIncludeDirectories>D:\SintolRTOS\CSintolSDK\sdk\include\rti1516;D:\SintolRTOS\CSintolSDK\sdk\include\SintolRTI;D:\SintolRTOS\CSintolSDK\sdk\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <EnforceTypeConversionRules>
+      </EnforceTypeConversionRules>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <AssemblerListingLocation>Release/</AssemblerListingLocation>
+      <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DisableSpecificWarnings>4290</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
